@@ -1,1 +1,25 @@
-<p>contact works!</p>
+<div class="container">
+    <form [formGroup]="contactForm" (submit)="sendData($event)">
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Email address</label>
+            <input [ngClass]="{'is-invalid' : hasErrors('email', 'required') || hasErrors('email', 'email')}" type="email" class="form-control" id="emailInput" placeholder="name@example.com" formControlName="email">
+            @if(hasErrors('email', 'required')){
+                <span class="text-danger">Email is required</span>
+            }
+            @if(hasErrors('email', 'email')){
+                <span class="text-danger">Invalid email format</span>
+            }
+        </div>
+        <div class="mb-3">
+            <label for="textAreaInput" class="form-label">Message</label>
+            <textarea [ngClass]="{'is-invalid' : hasErrors('messageArea', 'required') || hasErrors('messageArea', 'minLength')}" class="form-control" id="textAreaInput" rows="3" formControlName="messageArea"></textarea>
+            @if(hasErrors('messageArea', 'required')){
+                <span class="text-danger">Message is required</span>
+            }
+            @if(hasErrors('messageArea', 'minlength')){
+                <span class="text-danger">You need to write at least 10 characters</span>
+            }
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
