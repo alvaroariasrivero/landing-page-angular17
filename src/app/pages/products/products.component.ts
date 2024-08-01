@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductsApiService } from '../../services/products-api.service';
+import { IProduct } from '../../models/product.model';
 
 @Component({
   selector: 'app-products',
@@ -10,13 +11,11 @@ import { ProductsApiService } from '../../services/products-api.service';
 })
 export class ProductsComponent implements OnInit {
 
-  productList: any[] = []
+  productList: IProduct[] = []
   private _apiService = inject(ProductsApiService);
 
   ngOnInit(): void {
-    this._apiService.getProducts().subscribe((data: any[]) => {
-      console.log(data);
-      
+    this._apiService.getProducts().subscribe((data: IProduct[]) => {
       this.productList = data;
     })
   }
