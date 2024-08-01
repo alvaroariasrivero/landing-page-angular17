@@ -1,0 +1,9 @@
+.image-container{
+    width: 100%;
+    display: grid;
+    justify-items: center;
+}
+
+.product-img{
+    max-width: 200px;
+}
